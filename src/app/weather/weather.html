@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm6 col-xs12">
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="estado" class="form-control"></select>
+        {{vm.city}}
+      </div>
+      <div>
+        <button ng-click="vm.getWeatherData(vm.city, vm.state)" class="btn btn-success">Temperatura</button>
+      </div>
+    </div>
+  </div>
+</div> <!--End container -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm6 col-xs12">
+      <div ng-repeat="forecast in vm.forecasts">
+        <span>{{ forecast.tempDay }}°C</span>
+        <span>{{ forecast.tempMin }}°C</span>
+        <span>{{ forecast.tempMax }}°C</span>
+      </div>
+    </div>
+  </div>
+</div>
