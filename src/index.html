@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Previsão do tempo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="content/css/app.css"/>
+  </head>
+
+  <body>
+    <div ng-view class="container"></div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <!-- Angular-Route -->
+    <script src="https://code.angularjs.org/1.5.5/angular-route.js"></script>
+
+    <!-- main app module -->
+    <script src="app/app.module.js"></script>
+    <!-- weather module -->
+    <script src="app/weather/weather.module.js"></script>
+    <script src="app/weather/config.route.js"></script>
+    <script src="app/weather/weather.controller.js"></script>
+    <script src="app/weather/weather.service.js"></script>
+  </body>
+</html>
