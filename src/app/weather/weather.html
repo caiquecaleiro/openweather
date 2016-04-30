@@ -1,24 +1,93 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-sm6 col-xs12">
-      <div class="form-group">
-        <label>Estado</label>
-        <select id="estado" class="form-control"></select>
-        {{vm.city}}
-      </div>
-      <div>
-        <button ng-click="vm.getWeatherData(vm.city, vm.state)" class="btn btn-success">Temperatura</button>
+<div class="wrapper">
+  <div class="main-header">
+    <div class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <span class="navbar-brand">Previsão do tempo</span>
+        </div>
       </div>
     </div>
   </div>
-</div> <!--End container -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-sm6 col-xs12">
-      <div ng-repeat="forecast in vm.forecasts">
-        <span>{{ forecast.tempDay }}°C</span>
-        <span>{{ forecast.tempMin }}°C</span>
-        <span>{{ forecast.tempMax }}°C</span>
+
+  <div class="content-wrapper">
+    <!-- First box - Choose a state and city -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <strong class="box-title">Escolha um estado e uma cidade</strong>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-4 col-sm6 col-xs-12">
+                  <div class="form-group">
+                    <!-- State select -->
+                    <label>Estado</label>
+                    <select class="form-control" ng-model="vm.state"></select>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm6 col-xs-12">
+                  <div class="form-group">
+                    <!-- City select -->
+                    <label>Cidade</label>
+                    <select class="form-control" ng-model="vm.city"></select>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm6 col-xs-12">
+                  <center>
+                      <!-- Search button -->
+                      <a class="btn btn-app" ng-click="vm.getWeatherData()"><i class="fa fa-search"></i>Pesquisar</a>
+                      <!-- Favourite button -->
+                      <a class="btn btn-app"><i class="fa fa-star"></i>Favorito</a>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second box - Displays the forecasts -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm6 col-xs-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <strong class="box-title">Previsão para os próximos dias</strong>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div ng-repeat="forecast in vm.forecasts">
+                  <div class="col-md-4 col-sm6 col-xs-12">
+                    <div class="box box-widget widget-user">
+                      <div class="widget-user-header bg-aqua-active">
+                        <h3 class="widget-user-username">{{ forecast.tempDay }}</h3>
+                      </div>
+                      <div class="box-footer temp-color" >
+                        <div class="row">
+                          <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                              <h5 class="description-header">Mín</h5>
+                              <span class="description-text">{{ forecast.tempMin }}</span>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                              <h5 class="description-header">Máx</h5>
+                              <span class="description-text">{{ forecast.tempMax }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
