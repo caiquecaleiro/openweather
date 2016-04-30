@@ -7,7 +7,7 @@ The app uses these technologies:
 * Bootstrap 3.3.x
 
 ## Weather API
-This app is using the OpenWeatherMap API: http://openweathermap.org/api
+This app uses the OpenWeatherMap API: http://openweathermap.org/api
 
 ## Style and structure
 
