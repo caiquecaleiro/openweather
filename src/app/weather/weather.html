@@ -37,7 +37,7 @@
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <center>
                       <!-- Search button -->
-                      <a class="btn btn-app" ng-click="vm.getWeatherData()"><i class="fa fa-search"></i>Pesquisar</a>
+                      <a class="btn btn-app" ng-click="vm.getWeatherData(vm.city)"><i class="fa fa-search"></i>Pesquisar</a>
                       <!-- Favourite button -->
                       <a class="btn btn-app"><i class="fa fa-star"></i>Favorito</a>
                   </center>
@@ -63,7 +63,7 @@
                   <div class="col-md-4 col-sm6 col-xs-12">
                     <div class="box box-widget widget-user">
                       <div class="widget-user-header bg-aqua-active">
-                        <h3 class="widget-user-username">{{ forecast.tempDay }}</h3>
+                        <h3 class="widget-user-username">{{ forecast.date * 1000 | date: "EEE, d, MMM" }}</h3>
                       </div>
                       <div class="box-footer temp-color" >
                         <div class="row">

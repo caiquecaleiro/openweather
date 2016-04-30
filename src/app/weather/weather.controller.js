@@ -12,14 +12,11 @@
     vm.city = 'Blumenau';
     vm.state = 'SC';
     vm.getWeatherData = getWeatherData;
-    vm.recomendation
+    vm.recommendation = false;
     vm.forecasts = [];
-    vm.tempMin = 0;
-    vm.tempMax = 0;
-    vm.tempDay = 0;
 
-    function getWeatherData(city, state) {
-      weatherService.getWeatherData(city, state)
+    function getWeatherData(city) {
+      weatherService.getWeatherData(city)
         .success(function(data) {
           buildForecasts(data);
         });

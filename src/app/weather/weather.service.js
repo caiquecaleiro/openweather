@@ -44,10 +44,10 @@
       }
 
       for (var i = 0; i < data.list.length; i++) {
-        var forecastData = data.list[i].temp;
-        forecasts.push(new Forecast(forecastData.min,
-          forecastData.max,
-          forecastData.day
+        var forecastData = data.list[i];
+        forecasts.push(new Forecast(forecastData.temp.min,
+          forecastData.temp.max,
+          forecastData.dt
         ));
       }
       // add method for weekends temperature??
@@ -67,12 +67,12 @@
      * @constructor
      * @param {number} tempMin - The minimum temperature.
      * @param {number} tempMax - The maximum temperature.
-     * @param {number} tempDay - The current temperature.
+     * @param {number} date - The date.
      */
-    function Forecast(tempMin, tempMax, tempDay) {
+    function Forecast(tempMin, tempMax, date) {
       this.tempMin = tempMin;
       this.tempMax = tempMax;
-      this.tempDay = tempDay;
+      this.date = date;
     }
   }
 })();
