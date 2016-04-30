@@ -39,6 +39,10 @@
      * @param {object} data - The forecast data.
      */
     function buildForecasts(forecasts, data) {
+      if (forecasts.length > 0) {
+        forecasts = [];
+      }
+
       for (var i = 0; i < data.list.length; i++) {
         var forecastData = data.list[i].temp;
         forecasts.push(new Forecast(forecastData.min,
