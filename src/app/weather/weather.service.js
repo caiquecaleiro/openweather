@@ -38,6 +38,7 @@
      * to the forecasts object.
      * @param {object} forecasts - The forecasts object.
      * @param {object} data - The forecast data.
+     * @returns {forecasts}
      */
     function buildForecasts(forecasts, data) {
       if (forecasts.length > 0) {
@@ -51,7 +52,12 @@
           forecastData.dt
         ));
       }
+      return forecasts;
       // add method for weekends temperature??
+    }
+
+    function weekendRecommendation(currentDate, currentForecast, recommendation) {
+      recommendation = currentDate > 5 && (currentForecast.tempDay >= 25 || currentForecast.tempMax >= 25);
     }
 
     /**

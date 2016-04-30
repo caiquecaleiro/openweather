@@ -24,22 +24,26 @@
                   <div class="form-group">
                     <!-- State select -->
                     <label>Estado</label>
-                    <select class="form-control" ng-model="vm.state"></select>
+                    <select id="states" class="form-control" ng-model="vm.selectedState" ng-options="state.name for state in vm.states | orderBy: 'name'">
+                      <option value="">Selecione um estado</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <div class="form-group">
                     <!-- City select -->
                     <label>Cidade</label>
-                    <select class="form-control" ng-model="vm.city"></select>
+                    <select id="cities" class="form-control" ng-model="vm.selectedCity" ng-options="city.name for city in (vm.cities | filter: { state : vm.selectedState.id })">
+                      <option value="">Selecione uma cidade</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <center>
                       <!-- Search button -->
-                      <a class="btn btn-app" ng-click="vm.getWeatherData(vm.city)"><i class="fa fa-search"></i>Pesquisar</a>
+                      <a class="btn btn-app" ng-click="vm.getWeatherData(vm.selectedCity)"><i class="fa fa-search"></i>Pesquisar</a>
                       <!-- Favourite button -->
-                      <a class="btn btn-app"><i class="fa fa-star"></i>Favorito</a>
+                      <a class="btn btn-app" ng-click="vm.saveFavourite(vm.selectedState, vm.selectedCity)"><i class="fa fa-star"></i>Favorito</a>
                   </center>
                 </div>
               </div>
@@ -63,20 +67,20 @@
                   <div class="col-md-4 col-sm6 col-xs-12">
                     <div class="box box-widget widget-user">
                       <div class="widget-user-header bg-aqua-active">
-                        <h3 class="widget-user-username">{{ forecast.date * 1000 | date: "EEE, d, MMM" }}</h3>
+                        <p class="widget-user-username" ng-bind="(forecast.date * 1000 | date: 'EEE, d, MMM')")></p>
                       </div>
                       <div class="box-footer temp-color" >
                         <div class="row">
                           <div class="col-sm-6 border-right">
                             <div class="description-block">
-                              <h5 class="description-header">Mín</h5>
-                              <span class="description-text">{{ forecast.tempMin }}</span>
+                              <p class="description-header">Mín</p>
+                              <span class="description-text" ng-bind="forecast.tempMin"></span>
                             </div>
                           </div>
                           <div class="col-sm-6 border-right">
                             <div class="description-block">
-                              <h5 class="description-header">Máx</h5>
-                              <span class="description-text">{{ forecast.tempMax }}</span>
+                              <p class="description-header">Máx</p>
+                              <span class="description-text" ng-bind="forecast.tempMax"></span>
                             </div>
                           </div>
                         </div>
