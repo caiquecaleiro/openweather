@@ -15,6 +15,8 @@
     vm.recommendation = false;
     vm.forecasts = [];
 
+    getWeatherData(vm.city);
+
     function getWeatherData(city) {
       weatherService.getWeatherData(city)
         .success(function(data) {

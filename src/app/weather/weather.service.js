@@ -26,8 +26,9 @@
       var mode = '&mode=json';
       var callback = '&callback=JSON_CALLBACK';
       var days = '&cnt=7';
+      var lang = "&lang=pt";
       var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + ',br'
-        + mode + units + days + apiKey + callback;
+        + mode + units + days + lang + apiKey + callback;
 
       return $http.jsonp(url);
     }
