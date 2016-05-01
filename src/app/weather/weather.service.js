@@ -10,7 +10,8 @@
   function weatherService($http) {
     var service = {
       getWeatherData: getWeatherData,
-      buildForecasts: buildForecasts
+      buildForecasts: buildForecasts,
+      getHighestLowestTempData: getHighestLowestTempData
     };
 
     return service;
@@ -56,6 +57,35 @@
       // add method for weekends temperature??
     }
 
+    /**
+     * Checks the maximum and minimum temperature between the forecasts.
+     * @param {object} forecasts - The forecasts array.
+     * @returns {object}
+     */
+    function getHighestLowestTempData(forecasts) {
+      var temperatureData = [];
+      var tempMin = 99;
+      var tempMax = -99;
+      var dateMin;
+      var dateMax;
+
+      for (var i = 0; i < forecasts.length; i++) {
+        var forecast = forecasts[i];
+
+        if (forecast.tempMin < tempMin) {
+          tempMin = forecast.tempMin;
+          dateMin = forecast.date;
+        }
+
+        if (forecast.tempMax > tempMax) {
+          tempMax = forecast.tempMax;
+          dateMax = forecast.date;
+        }
+      }
+      temperatureData = [{tempMin: tempMin, dateMin, tempMax: tempMax, dateMax}];
+      return temperatureData;
+    }
+
     function weekendRecommendation(currentDate, currentForecast, recommendation) {
       recommendation = currentDate > 5 && (currentForecast.tempDay >= 25 || currentForecast.tempMax >= 25);
     }
@@ -77,8 +107,8 @@
      * @param {number} date - The date.
      */
     function Forecast(tempMin, tempMax, date) {
-      this.tempMin = tempMin + ' °C';
-      this.tempMax = tempMax + ' °C';
+      this.tempMin = tempMin;
+      this.tempMax = tempMax;
       this.date = date;
     }
   }

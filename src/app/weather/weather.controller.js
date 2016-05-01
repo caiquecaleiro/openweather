@@ -11,10 +11,15 @@
     var vm = this;
     vm.states = locationService.getStates();
     vm.cities = locationService.getCities();
+    vm.tempMax = 0;
+    vm.tempMin = 0;
+    vm.dateMax;
+    vm.dateMin;
     vm.saveFavourite = saveFavourite;
     vm.getWeatherData = getWeatherData;
     vm.recommendation = false;
     vm.forecasts = [];
+
     checkLocalStorage();
     getWeatherData(vm.selectedCity);
 
@@ -27,6 +32,20 @@
 
     function buildForecasts(data) {
       vm.forecasts = weatherService.buildForecasts(vm.forecasts, data);
+      showAdditionalData(vm.forecasts);
+    }
+
+    /**
+     * Checks the maximum and minimum temperature between the forecasts, then
+     * updates these data for the user.
+     * @param {object} forecasts - The forecasts array.
+     */
+    function showAdditionalData(forecasts) {
+      var weatherData = weatherService.getHighestLowestTempData(forecasts)[0];
+      vm.tempMax = weatherData.tempMax;
+      vm.tempMin = weatherData.tempMin;
+      vm.dateMax = weatherData.dateMax;
+      vm.dateMin = weatherData.dateMin;
     }
 
     /**
