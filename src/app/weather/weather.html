@@ -140,7 +140,7 @@
             </div>
             <div class="box-body">
               <div class="description-block">
-                <p class="description-header">{{vm.recommendationText}}</p>
+                <p class="description-header">{{ vm.recommendationText}}</p>
                 <i class="fa fa-thumbs-o-up fa-5x fa-cog" ng-show='vm.recommendation'></i>
                 <i class="fa fa-thumbs-o-down fa-5x fa-cog" ng-hide='vm.recommendation'></i>
               </div>
@@ -152,22 +152,7 @@
         </div>
 
         <!-- Fifth box - Diplays the temperature chart -->
-        <div class="col-md-4 col-sm6 col-xs-12">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <p class="box-title"><strong>Gráfico de variação de temperatura (7 dias)</strong></p>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas height="125" width="394" id="temperature-chart" style="height: 125px; width: 394px;"></canvas>
-              </div>
-            </div>
-            <div class="overlay" ng-show="vm.loadingData">
-              <i class="fa fa-refresh fa-spinner fa-pulse"></i>
-            </div>
-          </div>
-        </div>
-
+        <temperature-chart></temperature-chart>
       </div>
     </div>
   </div>

@@ -5,9 +5,9 @@
     .module('app.weather')
     .controller('WeatherController', WeatherController);
 
-  WeatherController.$inject = ['weatherService', 'locationService', 'initialData'];
+  WeatherController.$inject = ['weatherService', 'locationService', 'chartService', 'initialData'];
 
-  function WeatherController(weatherService, locationService, initialData) {
+  function WeatherController(weatherService, locationService, chartService, initialData) {
     var vm = this;
     vm.states = locationService.getStates();
     vm.cities = locationService.getCities();
@@ -52,6 +52,7 @@
       vm.dateMin = weatherData.dateMin;
       vm.recommendation = weatherData.recommendation;
       vm.recommendationText = weatherData.recommendationText;
+      chartService.getChartData(forecasts);
     }
 
     /**

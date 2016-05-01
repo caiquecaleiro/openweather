@@ -11,7 +11,7 @@
     var service = {
       getWeatherData: getWeatherData,
       buildForecasts: buildForecasts,
-      getAdditionalData, getAdditionalData
+      getAdditionalData: getAdditionalData
     };
 
     return service;
