@@ -66,21 +66,24 @@
                 <div ng-repeat="forecast in vm.forecasts">
                   <div class="col-md-4 col-sm6 col-xs-12">
                     <div class="box box-widget widget-user">
-                      <div class="widget-user-header bg-aqua-active">
-                        <p class="widget-user-username" ng-bind="(forecast.date * 1000 | date: 'EEE, d, MMM')"></p>
+                      <div class="widget-user-header bg-light-blue">
+                        <span class="widget-user-username" ng-bind="(forecast.date * 1000 | date: 'EEE, d, MMM')"></span>
                       </div>
-                      <div class="box-footer temp-color" >
+                      <div class="widget-user-image">
+                        <img class="img-circle" ng-src="http://openweathermap.org/img/w/{{forecast.icon}}">
+                      </div>
+                      <div class="box-footer" >
                         <div class="row">
                           <div class="col-sm-6 border-right">
                             <div class="description-block">
                               <p class="description-header">Mín</p>
-                              <span class="description-text" ng-bind="(forecast.tempMin) + '°C'"></span>
+                              <span class="description-text" ng-bind="(forecast.tempMin) + ' °C'"></span>
                             </div>
                           </div>
                           <div class="col-sm-6 border-right">
                             <div class="description-block">
                               <p class="description-header">Máx</p>
-                              <span class="description-text" ng-bind="(forecast.tempMax) + '°C'"></span>
+                              <span class="description-text" ng-bind="(forecast.tempMax) + ' °C'"></span>
                             </div>
                           </div>
                         </div>
@@ -111,7 +114,7 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-chevron-up fa-2x"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text"><strong>Máxima</strong></span>
-                  <span class="info-box-text" ng-bind="(vm.tempMax) + '°C'"></span>
+                  <span class="info-box-text" ng-bind="(vm.tempMax) + ' °C'"></span>
                   <span class="info-box-text"><strong>Data</strong></span>
                   <span class="info-box-text" ng-bind="(vm.dateMax * 1000 | date: 'EEE, d, MMM')"></span>
                 </div>
@@ -120,7 +123,7 @@
                 <span class="info-box-icon bg-blue"><i class="fa fa-chevron-down fa-2x"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text"><strong>Mínima</strong></span>
-                  <span class="info-box-text" ng-bind="(vm.tempMin) + '°C'"></span>
+                  <span class="info-box-text" ng-bind="(vm.tempMin) + ' °C'"></span>
                   <span class="info-box-text"><strong>Data</strong></span>
                   <span class="info-box-text" ng-bind="(vm.dateMin * 1000 | date: 'EEE, d, MMM')"></span>
                 </div>

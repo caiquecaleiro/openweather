@@ -11,3 +11,7 @@
 .search-box {
   margin-top: 5px;
 }
+
+.img-circle {
+  border: none !important;
+}

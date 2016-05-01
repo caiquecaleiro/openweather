@@ -50,7 +50,8 @@
         var forecastData = data.list[i];
         forecasts.push(new Forecast(forecastData.temp.min,
           forecastData.temp.max,
-          forecastData.dt
+          forecastData.dt,
+          forecastData.weather[0].icon + '.png'
         ));
       }
       return forecasts;
@@ -114,11 +115,13 @@
      * @param {number} tempMin - The minimum temperature.
      * @param {number} tempMax - The maximum temperature.
      * @param {number} date - The date.
+     * @param {string} icon - The icon.
      */
-    function Forecast(tempMin, tempMax, date) {
+    function Forecast(tempMin, tempMax, date, icon) {
       this.tempMin = tempMin;
       this.tempMax = tempMax;
       this.date = date;
+      this.icon = icon;
     }
   }
 })();
