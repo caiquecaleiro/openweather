@@ -19,15 +19,18 @@
     vm.getWeatherData = getWeatherData;
     vm.recommendation = false;
     vm.recommendationText = '';
+    vm.loadingData = true;
     vm.forecasts = [];
 
     checkLocalStorage();
     getWeatherData(vm.selectedCity);
 
     function getWeatherData(city) {
+      vm.loadingData = true;
       weatherService.getWeatherData(city.name)
         .success(function(data) {
           buildForecasts(data);
+          vm.loadingData = false;
         });
     }
 
