@@ -40,10 +40,10 @@
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <div class="text-center search-favourite">
-                      <!-- Search button -->
-                      <a class="btn btn-default" ng-click="vm.getWeatherData(vm.selectedCity)"><i class="fa fa-search"></i>Pesquisar</a>
-                      <!-- Favourite button -->
-                      <a class="btn btn-default" ng-click="vm.saveFavourite(vm.selectedState, vm.selectedCity)"><i class="fa fa-star"></i>Favorito</a>
+                    <!-- Search button -->
+                    <a class="btn btn-default" ng-disabled="!vm.selectedState || !vm.selectedCity" ng-click="vm.getWeatherData()"><i class="fa fa-search"></i>Pesquisar</a>
+                    <!-- Favourite button -->
+                    <a class="btn btn-default" ng-disabled="!vm.selectedState || !vm.selectedCity" ng-click="vm.saveFavourite()"><i class="fa fa-star"></i>Favorito</a>
                   </div>
                 </div>
               </div>

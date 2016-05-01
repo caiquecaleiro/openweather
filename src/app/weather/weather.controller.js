@@ -23,17 +23,27 @@
     vm.forecasts = [];
 
     checkLocalStorage();
-    getWeatherData(vm.selectedCity);
+    getWeatherData();
 
-    function getWeatherData(city) {
-      vm.loadingData = true;
-      weatherService.getWeatherData(city.name)
-        .success(function(data) {
-          buildForecasts(data);
-          vm.loadingData = false;
-        });
+    /**
+     * Checks if both state and city are selected and then it requests the weatherService
+     * data from service.
+     */
+    function getWeatherData() {
+      if (vm.selectedCity && vm.selectedState) {
+        vm.loadingData = true;
+        weatherService.getWeatherData(vm.selectedCity.name)
+          .success(function(data) {
+            buildForecasts(data);
+            vm.loadingData = false;
+          });
+      }
     }
 
+    /**
+     *
+     * @param {object} data - The weather data.
+     */
     function buildForecasts(data) {
       vm.forecasts = weatherService.buildForecasts(vm.forecasts, data);
       showAdditionalData(vm.forecasts);
@@ -71,13 +81,10 @@
     }
 
     /**
-     * Whether the state and city are selected, it stores both in cache.
-     * Otherwise, it shows a message for the user.
+     * Stores the selected state and selected city as favourite in cache.
      */
-    function saveFavourite(state, city) {
-      if (angular.isUndefined(state) && angular.isUndefined(city)) {
-        // define some error
-      } else {
+    function saveFavourite() {
+      if (vm.selectedState && vm.selectedCity) {
         localStorage.state = vm.states.indexOf(vm.selectedState);
         localStorage.city = vm.cities.indexOf(vm.selectedCity);
       }
