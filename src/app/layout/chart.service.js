@@ -9,11 +9,16 @@
 
   function chartService($filter) {
     var service = {
-      getChartData: getChartData
+      buildChart: buildChart
     };
 
     return service;
 
+    /**
+     * Creates the arrays (minimum temperature, maximum temperature and date).
+     * @param {object} forecasts - The forecasts object.
+     * @returns {object} - Object with the arrays.
+     */
     function getForecastData(forecasts) {
       var days = [];
       var minTemp = [];
@@ -33,7 +38,11 @@
       return data;
     }
 
-    function getChartData(forecasts) {
+    /**
+     * Uses the temperatures data from the forecasts and creates the chart.
+     * @param {object} forecasts - The forecasts object.
+     */
+    function buildChart(forecasts) {
       var chartData = [];
       var chartOptions = [];
       var areaChartCanvas = $('#temperature-chart').get(0).getContext('2d');
@@ -107,6 +116,5 @@
       };
       areaChart.Line(chartData, chartOptions);
     }
-
   }
 })();

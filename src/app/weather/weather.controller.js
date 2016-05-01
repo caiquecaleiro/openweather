@@ -63,7 +63,7 @@
       vm.dateMin = weatherData.dateMin;
       vm.recommendation = weatherData.recommendation;
       vm.recommendationText = weatherData.recommendationText;
-      chartService.getChartData(forecasts);
+      chartService.buildChart(forecasts);
     }
 
     /**
