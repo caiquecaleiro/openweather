@@ -4,7 +4,8 @@
   angular
     .module('app', [
       'ngRoute',
-      'app.weather'
+      'app.weather',
+      'app.layout'
     ])
     .config(configFunction);
 
