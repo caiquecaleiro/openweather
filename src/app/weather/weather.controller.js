@@ -17,6 +17,7 @@
     vm.dateMin;
     vm.saveFavourite = saveFavourite;
     vm.getWeatherData = getWeatherData;
+    vm.changeState = changeState;
     vm.recommendation = false;
     vm.recommendationText = '';
     vm.loadingData = true;
@@ -72,8 +73,8 @@
      */
     function checkLocalStorage() {
       if (angular.isUndefined(localStorage.state) && angular.isUndefined(localStorage.city)) {
-        vm.selectedState = initialData.SANTA_CATARINA;
-        vm.selectedCity = initialData.BLUMENAU;
+        vm.selectedState = vm.states[initialData.SANTA_CATARINA];
+        vm.selectedCity = vm.cities[initialData.BLUMENAU];
       } else {
         vm.selectedState = vm.states[localStorage.state];
         vm.selectedCity = vm.cities[localStorage.city];
@@ -87,6 +88,13 @@
       if (vm.selectedState && vm.selectedCity) {
         localStorage.state = vm.states.indexOf(vm.selectedState);
         localStorage.city = vm.cities.indexOf(vm.selectedCity);
+      }
+    }
+
+    // TODO: Check the states and cities filters.
+    function changeState() {
+      if (!vm.selectedState) {
+        vm.selectedCity = '';
       }
     }
   }

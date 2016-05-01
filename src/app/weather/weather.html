@@ -23,17 +23,19 @@
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <div class="form-group">
                     <!-- State select -->
+                    <!-- TODO: review the filter -->
                     <label>Estado</label>
-                    <select id="states" class="form-control" ng-model="vm.selectedState" ng-options="state.name for state in vm.states | orderBy: 'name'">
+                    <select id="states" class="form-control" ng-change="vm.changeState()" ng-model="vm.selectedState" ng-options="state.name for state in vm.states | orderBy: 'name'">
                       <option value="">Selecione um estado</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <div class="form-group">
-                    <!-- City select - Não consegui fazer com um text field, logo coloquei um select -->
+                    <!-- City select -->
+                    <!-- TODO: Change to use a text field -->
                     <label>Cidade</label>
-                    <select id="cities" class="form-control" ng-model="vm.selectedCity" ng-options="city.name for city in (vm.cities | filter: { state : vm.selectedState.id })">
+                    <select id="cities" ng-disabled="!vm.selectedState" class="form-control" ng-model="vm.selectedCity" ng-options="city.name for city in (vm.cities | filter: { state : vm.selectedState.id })">
                       <option value="">Selecione uma cidade</option>
                     </select>
                   </div>
