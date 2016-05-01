@@ -151,11 +151,10 @@
     /**
      * Checks whether the recommendation is positive for beach or not. Then,
      * returns the recommendation text.
-     * @param {boolean} recommendation - The recommendation (go to the beach).
-     * @param {number} tempMax - The maximum temperature between the forecasts.
+     * @param {boolean} recommendation - The recommendation.
      * @returns {string}
      */
-    function getRecommendationText(recommendation, tempMax) {
+    function getRecommendationText(recommendation) {
       var positive = 'O fim de semana vai ter temperaturas acima de 25' + ' °C.';
       var negative = 'As temperaturas no fim de semana não são as melhores.';
       return recommendation ? positive : negative;
