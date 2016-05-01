@@ -44,8 +44,8 @@
         labels: data[0].days,
         datasets: [
           {
-            label: 'Temperatura mínima',
-            fillColor: "rgba(210, 214, 222, 1)",
+            label: 'Temperatura máxima',
+            fillColor: "#dd4b39",
             strokeColor: "rgba(210, 214, 222, 1)",
             pointColor: "rgba(210, 214, 222, 1)",
             pointStrokeColor: "#c1c7d1",
@@ -54,10 +54,10 @@
             data: data[0].maxTemp
           },
           {
-            label: 'Temperatura máxima',
-            fillColor: "rgba(60,141,188,0.9)",
+            label: 'Temperatura mínima',
+            fillColor: "#3c8dbc",
             strokeColor: "rgba(60,141,188,0.8)",
-            pointColor: "#3b8bba",
+            pointColor: "rgba(210, 214, 222, 1)",
             pointStrokeColor: "rgba(60,141,188,1)",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(60,141,188,1)",
