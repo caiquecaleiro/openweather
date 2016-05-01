@@ -77,8 +77,8 @@
      * @param {number} date - The date.
      */
     function Forecast(tempMin, tempMax, date) {
-      this.tempMin = tempMin;
-      this.tempMax = tempMax;
+      this.tempMin = tempMin + ' °C';
+      this.tempMax = tempMax + ' °C';
       this.date = date;
     }
   }
