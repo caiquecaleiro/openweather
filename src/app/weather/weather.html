@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
                   <div class="form-group">
-                    <!-- City select -->
+                    <!-- City select - Não consegui fazer com um text field, logo coloquei um select -->
                     <label>Cidade</label>
                     <select id="cities" class="form-control" ng-model="vm.selectedCity" ng-options="city.name for city in (vm.cities | filter: { state : vm.selectedState.id })">
                       <option value="">Selecione uma cidade</option>
@@ -39,11 +39,11 @@
                   </div>
                 </div>
                 <div class="col-md-4 col-sm6 col-xs-12">
-                  <div class="text-center">
+                  <div class="text-center search-favourite">
                       <!-- Search button -->
-                      <a class="btn btn-app" ng-click="vm.getWeatherData(vm.selectedCity)"><i class="fa fa-search"></i>Pesquisar</a>
+                      <a class="btn btn-default" ng-click="vm.getWeatherData(vm.selectedCity)"><i class="fa fa-search"></i>Pesquisar</a>
                       <!-- Favourite button -->
-                      <a class="btn btn-app" ng-click="vm.saveFavourite(vm.selectedState, vm.selectedCity)"><i class="fa fa-star"></i>Favorito</a>
+                      <a class="btn btn-default" ng-click="vm.saveFavourite(vm.selectedState, vm.selectedCity)"><i class="fa fa-star"></i>Favorito</a>
                   </div>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                         <span class="widget-user-username" ng-bind="(forecast.date * 1000 | date: 'EEE, d, MMM')"></span>
                       </div>
                       <div class="widget-user-image">
-                        <img class="img-circle" ng-src="http://openweathermap.org/img/w/{{forecast.icon}}">
+                        <img class="img-circle" ng-src="http://openweathermap.org/img/w/{{ forecast.icon }}">
                       </div>
                       <div class="box-footer" >
                         <div class="row">
@@ -143,7 +143,7 @@
             </div>
             <div class="box-body">
               <div class="description-block">
-                <p class="description-header">{{ vm.recommendationText}}</p>
+                <p class="description-header">{{ vm.recommendationText }}</p>
                 <i class="fa fa-thumbs-o-up fa-5x fa-cog" ng-show='vm.recommendation'></i>
                 <i class="fa fa-thumbs-o-down fa-5x fa-cog" ng-hide='vm.recommendation'></i>
               </div>

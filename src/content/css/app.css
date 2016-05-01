@@ -15,3 +15,11 @@
 .img-circle {
   border: none !important;
 }
+
+.search-favourite {
+  margin-top: 25px;
+}
+
+.fa-star, .fa-search {
+  margin-right: 5px;
+}

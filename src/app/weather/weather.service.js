@@ -5,9 +5,10 @@
     .module('app.weather')
     .factory('weatherService', weatherService);
 
-  weatherService.$inject = ['$http'];
+  weatherService.$inject = ['$http', 'weekendDays'];
 
-  function weatherService($http) {
+  function weatherService($http, weekendDays) {
+    var currentDay = '';
     var service = {
       getWeatherData: getWeatherData,
       buildForecasts: buildForecasts,
@@ -19,7 +20,7 @@
     /**
     * Returns the forecast data of today and the next 6 days.
     * @param {string} city - The city name.
-    * @returns {json} The forecast data as json
+    * @returns {json} The forecast data as json.
     */
     function getWeatherData(city) {
       var apiKey = '&APPID=0e6bfb61dab954b920834902e14fa852';
@@ -59,12 +60,14 @@
 
     /**
      * Checks the maximum and minimum temperature between the forecasts. Also,
-     * checks if there is a good day to go to the beach (at least 25ºC).
+     * checks if the weekend is good to go to the beach (at least 25ºC).
      * @param {object} forecasts - The forecasts array.
-     * @returns {object} tempMin, tempMax and recommendation.
+     * @returns {object} tempMin, tempMax, recommendation and recommendationText.
      */
     function getAdditionalData(forecasts) {
       var temperatureData = [];
+      var saturdayData = [];
+      var sundayData = [];
       var recommendation = false;
       var recommendationText = '';
       var tempMin = 99;
@@ -84,8 +87,22 @@
           tempMax = forecast.tempMax;
           dateMax = forecast.date;
         }
+
+        if (isWeekend(forecast.date)) {
+          if (currentDay == weekendDays.SATURDAY) {
+            saturdayData.push({
+              tempMax: forecast.tempMax,
+              tempMin: forecast.tempMin
+            });
+          } else if (currentDay == weekendDays.SUNDAY) {
+            sundayData.push({
+              tempMax: forecast.tempMax,
+              tempMin: forecast.tempMin
+            });
+          }
+        }
       }
-      recommendation = tempMin >= 25 || tempMax >= 25;
+      recommendation = getRecommendation(saturdayData, sundayData);
       recommendationText = getRecommendationText(recommendation, tempMax);
 
       temperatureData = [{
@@ -98,19 +115,54 @@
     }
 
     /**
+     * Checks whether the current date is Saturday or Sunday. If true, sets the
+     * currentDay variable value.
+     * @param {number} currentDate - The current date in Unix timestamp.
+     * @returns {boolean}
+     */
+    function isWeekend(currentDate) {
+      var date = new Date(currentDate * 1000);
+
+      if (date.getDay() == weekendDays.SATURDAY || date.getDay() == weekendDays.SUNDAY) {
+        currentDay = date.getDay();
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Checks whether the minimum or maximum temperature from Saturday and Sunday
+     * are above 25°C.
+     * @param {object} saturdayData - The saturdayData object, with the maximum and
+     * minimum temperatures.
+     * @param {object} sundayData - The sundayData object, with the maximum and
+     * minimum temperatures.
+     * @returns {boolean}
+     */
+    function getRecommendation(saturdayData, sundayData) {
+      if ((saturdayData[0].tempMin > 25 || saturdayData[0].tempMax > 25)
+        && (sundayData[0].tempMin > 25 || sundayData[0].tempMax > 25)) {
+          return true;
+      } else {
+        return false;
+      }
+    }
+
+    /**
      * Checks whether the recommendation is positive for beach or not. Then,
      * returns the recommendation text.
      * @param {boolean} recommendation - The recommendation (go to the beach).
      * @param {number} tempMax - The maximum temperature between the forecasts.
+     * @returns {string}
      */
     function getRecommendationText(recommendation, tempMax) {
-      var positive = 'É um ótimo dia para ir à praia. A temperatura máxima é de ' + tempMax + ' °C.';
-      var negative = 'A temperatura máxima é de ' + tempMax + ' °C. Talvez não seja o melhor dia para ir à praia.';
+      var positive = 'O fim de semana vai ter temperaturas acima de 25' + ' °C.';
+      var negative = 'As temperaturas no fim de semana não são as melhores.';
       return recommendation ? positive : negative;
     }
 
     /**
-     * Represents a forecast
+     * Represents a forecast.
      * @constructor
      * @param {number} tempMin - The minimum temperature.
      * @param {number} tempMax - The maximum temperature.
