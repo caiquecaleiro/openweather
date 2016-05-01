@@ -10,12 +10,6 @@
       templateUrl: 'app/layout/chart.html',
       restrict: 'E',
       scope: {},
-      controller: ChartController,
-      controllerAs: 'vm'
-    }
-
-    function ChartController() {
-
     }
   }
 })();
