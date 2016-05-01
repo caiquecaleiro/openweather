@@ -22,8 +22,8 @@
 
       for (var i = 0; i < forecasts.length; i++) {
         days.push($filter('date')(new Date(forecasts[i].date * 1000), 'EEE'));
-        minTemp.push(forecasts[i].minTemp);
-        maxTemp.push(forecasts[i].maxTemp);
+        minTemp.push(forecasts[i].tempMin);
+        maxTemp.push(forecasts[i].tempMax);
       }
       data = [{
         days: days,
@@ -51,7 +51,7 @@
             pointStrokeColor: "#c1c7d1",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: data[0].tempMax
+            data: data[0].maxTemp
           },
           {
             label: 'Temperatura máxima',
@@ -61,7 +61,7 @@
             pointStrokeColor: "rgba(60,141,188,1)",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(60,141,188,1)",
-            data: data[0].tempMin
+            data: data[0].minTemp
           }
         ]
       };
