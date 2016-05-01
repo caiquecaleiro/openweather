@@ -18,6 +18,7 @@
     vm.saveFavourite = saveFavourite;
     vm.getWeatherData = getWeatherData;
     vm.recommendation = false;
+    vm.recommendationText = '';
     vm.forecasts = [];
 
     checkLocalStorage();
@@ -41,11 +42,13 @@
      * @param {object} forecasts - The forecasts array.
      */
     function showAdditionalData(forecasts) {
-      var weatherData = weatherService.getHighestLowestTempData(forecasts)[0];
+      var weatherData = weatherService.getAdditionalData(forecasts)[0];
       vm.tempMax = weatherData.tempMax;
       vm.tempMin = weatherData.tempMin;
       vm.dateMax = weatherData.dateMax;
       vm.dateMin = weatherData.dateMin;
+      vm.recommendation = weatherData.recommendation;
+      vm.recommendationText = weatherData.recommendationText;
     }
 
     /**

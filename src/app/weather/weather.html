@@ -105,9 +105,7 @@
             </div>
             <div class="box-body">
               <div class="info-box">
-                <span class="info-box-icon bg-red">
-                  <i class="ionicons ion-thermometer"></i>
-                </span>
+                <span class="info-box-icon bg-red"><i class="fa fa-chevron-up fa-2x"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text"><strong>Máxima</strong></span>
                   <span class="info-box-text" ng-bind="(vm.tempMax) + '°C'"></span>
@@ -116,7 +114,7 @@
                 </div>
               </div>
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ionicons ion-thermometer"></i></span>
+                <span class="info-box-icon bg-blue"><i class="fa fa-chevron-down fa-2x"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text"><strong>Mínima</strong></span>
                   <span class="info-box-text" ng-bind="(vm.tempMin) + '°C'"></span>
@@ -136,8 +134,9 @@
             </div>
             <div class="box-body">
               <div class="description-block">
-                <p class="description-header">A recomendação ... teste teste</p>
-                <span class="description-text">teste teste teste teste</span>
+                <p class="description-header">{{vm.recommendationText}}</p>
+                <i class="fa fa-thumbs-o-up fa-5x fa-cog" ng-show='vm.recommendation'></i>
+                <i class="fa fa-thumbs-o-down fa-5x fa-cog" ng-hide='vm.recommendation'></i>
               </div>
             </div>
           </div>

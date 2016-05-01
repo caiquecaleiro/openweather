@@ -11,7 +11,7 @@
     var service = {
       getWeatherData: getWeatherData,
       buildForecasts: buildForecasts,
-      getHighestLowestTempData: getHighestLowestTempData
+      getAdditionalData, getAdditionalData
     };
 
     return service;
@@ -54,16 +54,18 @@
         ));
       }
       return forecasts;
-      // add method for weekends temperature??
     }
 
     /**
-     * Checks the maximum and minimum temperature between the forecasts.
+     * Checks the maximum and minimum temperature between the forecasts. Also,
+     * checks if there is a good day to go to the beach (at least 25ºC).
      * @param {object} forecasts - The forecasts array.
-     * @returns {object}
+     * @returns {object} tempMin, tempMax and recommendation.
      */
-    function getHighestLowestTempData(forecasts) {
+    function getAdditionalData(forecasts) {
       var temperatureData = [];
+      var recommendation = false;
+      var recommendationText = '';
       var tempMin = 99;
       var tempMax = -99;
       var dateMin;
@@ -82,21 +84,28 @@
           dateMax = forecast.date;
         }
       }
-      temperatureData = [{tempMin: tempMin, dateMin, tempMax: tempMax, dateMax}];
+      recommendation = tempMin >= 25 || tempMax >= 25;
+      recommendationText = getRecommendationText(recommendation, tempMax);
+
+      temperatureData = [{
+        tempMin: tempMin, dateMin,
+        tempMax: tempMax, dateMax,
+        recommendation: recommendation,
+        recommendationText: recommendationText
+      }];
       return temperatureData;
     }
 
-    function weekendRecommendation(currentDate, currentForecast, recommendation) {
-      recommendation = currentDate > 5 && (currentForecast.tempDay >= 25 || currentForecast.tempMax >= 25);
-    }
-
     /**
-     * Converts timestamp to date.
-     * @param {number} date - The Unix timestamp value.
-     * @returns {Date}
+     * Checks whether the recommendation is positive for beach or not. Then,
+     * returns the recommendation text.
+     * @param {boolean} recommendation - The recommendation (go to the beach).
+     * @param {number} tempMax - The maximum temperature between the forecasts.
      */
-    function timestampToDate(date) {
-      return new Date(date * 1000);
+    function getRecommendationText(recommendation, tempMax) {
+      var positive = 'É um ótimo dia para ir à praia. A temperatura máxima é de ' + tempMax + ' °C.';
+      var negative = 'A temperatura máxima é de ' + tempMax + ' °C. Talvez não seja o melhor dia para ir à praia.';
+      return recommendation ? positive : negative;
     }
 
     /**
