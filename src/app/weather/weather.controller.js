@@ -42,7 +42,7 @@
     }
 
     /**
-     *
+     * Creates the forecasts that will be shown for the user.
      * @param {object} data - The weather data.
      */
     function buildForecasts(data) {

@@ -155,7 +155,7 @@
      * @returns {string}
      */
     function getRecommendationText(recommendation) {
-      var positive = 'O fim de semana vai ter temperaturas acima de 25' + ' °C.';
+      var positive = 'O fim de semana vai ter temperaturas acima de 25 °C.';
       var negative = 'As temperaturas no fim de semana não são as melhores.';
       return recommendation ? positive : negative;
     }
