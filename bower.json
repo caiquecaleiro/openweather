@@ -1,0 +1,25 @@
+{
+  "name": "openweather",
+  "description": "A weather forecast project.",
+  "main": "app.module.js",
+  "authors": [
+    "Caique Caleiro <caiquecaleiro@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/caiquecaleiro/openweather",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.8",
+    "angular-i18n": "^1.5.8",
+    "Ionicons": "ionicons#^2.0.1",
+    "font-awesome": "^4.6.3"
+  }
+}
