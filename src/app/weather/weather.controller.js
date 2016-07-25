@@ -56,7 +56,7 @@
      * @param {object} forecasts - The forecasts array.
      */
     function showAdditionalData(forecasts) {
-      var weatherData = weatherService.getAdditionalData(forecasts)[0];
+      var weatherData = weatherService.getAdditionalData(forecasts);
       vm.tempMax = weatherData.tempMax;
       vm.tempMin = weatherData.tempMin;
       vm.dateMax = weatherData.dateMax;

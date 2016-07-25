@@ -29,8 +29,8 @@
       var callback = '&callback=JSON_CALLBACK';
       var days = '&cnt=7';
       var lang = "&lang=pt";
-      var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + ',br'
-        + mode + units + days + lang + apiKey + callback;
+      var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + ',br' +
+        mode + units + days + lang + apiKey + callback;
 
       return $http.jsonp(url);
     }
@@ -105,12 +105,14 @@
       recommendation = getRecommendation(saturdayData, sundayData);
       recommendationText = getRecommendationText(recommendation, tempMax);
 
-      temperatureData = [{
-        tempMin: tempMin, dateMin,
-        tempMax: tempMax, dateMax,
+      temperatureData = {
+        tempMin: tempMin,
+        dateMin: dateMin,
+        tempMax: tempMax,
+        dateMax: dateMax,
         recommendation: recommendation,
         recommendationText: recommendationText
-      }];
+      };
       return temperatureData;
     }
 
@@ -140,9 +142,9 @@
      * @returns {boolean}
      */
     function getRecommendation(saturdayData, sundayData) {
-      if ((saturdayData[0].tempMin > 25 || saturdayData[0].tempMax > 25)
-        && (sundayData[0].tempMin > 25 || sundayData[0].tempMax > 25)) {
-          return true;
+      if ((saturdayData[0].tempMin > 25 || saturdayData[0].tempMax > 25) &&
+        (sundayData[0].tempMin > 25 || sundayData[0].tempMax > 25)) {
+        return true;
       } else {
         return false;
       }

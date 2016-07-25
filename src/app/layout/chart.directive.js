@@ -10,6 +10,6 @@
       templateUrl: 'app/layout/chart.html',
       restrict: 'E',
       scope: {},
-    }
+    };
   }
 })();

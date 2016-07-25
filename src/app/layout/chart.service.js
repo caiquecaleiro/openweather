@@ -30,11 +30,11 @@
         minTemp.push(forecasts[i].tempMin);
         maxTemp.push(forecasts[i].tempMax);
       }
-      data = [{
+      data = {
         days: days,
         minTemp: minTemp,
         maxTemp: maxTemp
-      }];
+      };
       return data;
     }
 
@@ -50,7 +50,7 @@
       var data = getForecastData(forecasts);
 
       chartData = {
-        labels: data[0].days,
+        labels: data.days,
         datasets: [
           {
             label: 'Temperatura máxima',
@@ -60,7 +60,7 @@
             pointStrokeColor: "#c1c7d1",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: data[0].maxTemp
+            data: data.maxTemp
           },
           {
             label: 'Temperatura mínima',
@@ -70,7 +70,7 @@
             pointStrokeColor: "rgba(60,141,188,1)",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(60,141,188,1)",
-            data: data[0].minTemp
+            data: data.minTemp
           }
         ]
       };
