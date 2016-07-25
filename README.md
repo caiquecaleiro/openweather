@@ -9,8 +9,27 @@ The app uses these technologies:
 * Ionicons 2.0.x
 * Font Awesome 4.6.x
 
+![OpenWeather](https://raw.githubusercontent.com/caiquecaleiro/openweather/master/src/img/github/app_screenshot.png)
+
 ## Weather API
 This app uses the OpenWeatherMap API: http://openweathermap.org/api
+
+## Installation and usage
+
+Install the npm:
+```bash
+$ npm install
+```
+
+Install the bower:
+```bash
+$ bower install
+```
+
+Use gulp to run:
+```bash
+$ gulp
+```
 
 ## Style and structure
 
